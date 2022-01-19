@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Axios from 'axios';
+import {useState} from 'react';
 function App() {
+const [joke,setJoke]=useState("")
+const getJokes=()=>{
+Axios.get("https://api.chucknorris.io/jokes/random")
+.then ((response)=>{
+  setJoke(response.data.id)
+} )
+
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h1>We Will use Axios</h1>
+    <button onClick={getJokes} >console.log</button>
+    <h2>{joke}</h2>
     </div>
   );
 }
 
 export default App;
+
+
+//https://api.chucknorris.io/jokes/random
+//https://jsonplaceholder.typicode.com/users
